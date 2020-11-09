@@ -23,7 +23,7 @@
     "db",
     "sql"
   ],
-  "author": "Michael Maslov",
+  "author": "Mario Lemes",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mario-lemes/sequelize-migrations/issues"

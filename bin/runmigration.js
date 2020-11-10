@@ -37,6 +37,12 @@ const pathConfig = require('../lib/pathconfig');
     process.env.PWD = process.cwd();
   }
 
+  // Check dependencies
+  if (program.require) {
+    const [module, ...argvs] = program.require;
+    await requireOrImport(module, argvs);
+  }
+
   let { migrationsDir, modelsDir } = pathConfig(program);
 
   if (!fs.existsSync(modelsDir)) {

@@ -8,6 +8,7 @@ const { Command } = require('commander');
 
 const migrate = require('../lib/migrate');
 const pathConfig = require('../lib/pathconfig');
+const { requireOrImport } = require('../lib/esm-utils');
 
 (async () => {
   const program = new Command();

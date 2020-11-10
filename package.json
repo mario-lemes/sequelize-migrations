@@ -9,7 +9,7 @@
     "makemigration": "./bin/makemigration.js"
   },
   "scripts": {
-    "test": "echo \"No test specified\"",
+    "test": "mocha \"./{,!(node_modules|remote)/**/}*.test.js\" --recursive --require tests/mocha.opts.js --reporter spec --timeout 0 --exit",
     "release": "np --no-release-draft"
   },
   "repository": {
@@ -32,7 +32,7 @@
   "homepage": "https://github.com/mario-lemes/sequelize-migrations-generator#readme",
   "dependencies": {
     "async": "^2.5.1",
-    "command-line-args": "^5.0.2",
+    "commander": "^6.2.0",
     "deep-diff": "^0.3.8",
     "js-beautify": "^1.8.9",
     "lodash": "^4.17.11",
@@ -40,6 +40,10 @@
     "sequelize": "^4.42.0"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "concat-stream": "^2.0.0",
+    "dotenv": "^8.2.0",
+    "mocha": "^8.2.1",
     "np": "^7.0.0"
   }
 }

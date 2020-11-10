@@ -1,4 +1,4 @@
-# sequelize-migrations
+# sequelize-migrations-generator
 
 Migration generator and runner for sequelize
 

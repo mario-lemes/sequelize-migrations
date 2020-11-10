@@ -20,7 +20,7 @@ Forked from [sequelize-auto-migrations](https://github.com/flexxnn/sequelize-aut
 - --models-path <path string>       'The path to the models folder'
 - --help                            'Show this message'
 
-* Change models and run it again, model difference will be saved to the next migration
+Change models and run it again, model difference will be saved to the next migration
 
 `makemigration` tool creates `_current.json` file in `migrations` dir, that is used to calculate difference to the next migration. Do not remove it!
 

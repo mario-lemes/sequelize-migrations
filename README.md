@@ -12,6 +12,7 @@ Forked from [sequelize-auto-migrations](https://github.com/flexxnn/sequelize-aut
 
 ### `makemigration [--options]`
 
+- --require, -r <file args string>  'Inject dependencies tu execute before run the script'
 - --name, -n <migration string>     'Set migration name (default: "noname")'
 - --preview, -p                     'Show migration preview (does not change any files)'
 - --comment, -c <comment string>    'Set migration comment'
@@ -35,7 +36,8 @@ To preview new migration, without any changes, you can run:
 
 ### `runmigration [--options]`
 
-- --rev, -r <revision number>       'Set migration revision (default: 0)'
+- --require, -r <file args string>  'Inject dependencies tu execute before run the script'
+- --rev <revision number>           'Set migration revision (default: 0)'
 - --pos, -p <position number>       'Run first migration at pos (default: 0)'
 - --one                             'Do not run next migrations'
 - --list, -l                        'Show migration file list (without execution)'

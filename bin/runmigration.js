@@ -60,7 +60,14 @@ const { requireOrImport } = require('../lib/esm-utils');
     return;
   }
 
-  const sequelize = require(modelsDir).sequelize;
+  const modelsFile = require(modelsDir);
+  let sequelize = modelsFile;
+  // Support for async functions
+  if (modelsFile.constructor.name === 'AsyncFunction') {
+    sequelize = await modelsFile();
+  }
+  sequelize = sequelize.sequelize;
+
   const queryInterface = sequelize.getQueryInterface();
 
   // execute all migration from

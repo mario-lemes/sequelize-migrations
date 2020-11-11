@@ -87,8 +87,14 @@ const { requireOrImport } = require('../lib/esm-utils');
   } catch (e) {}
 
   //console.log(path.join(migrationsDir, '_current.json'), JSON.parse(fs.readFileSync(path.join(migrationsDir, '_current.json') )))
-  let sequelize = require(modelsDir).sequelize;
+  const modelsFile = require(modelsDir);
+  let sequelize = modelsFile;
+  // Support for async functions
+  if (modelsFile.constructor.name === 'AsyncFunction') {
+    sequelize = await modelsFile();
+  }
 
+  sequelize = sequelize.sequelize;
   let models = sequelize.models;
 
   currentState.tables = migrate.reverseModels(sequelize, models);

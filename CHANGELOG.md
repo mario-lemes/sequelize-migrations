@@ -1,4 +1,4 @@
 # Changelog
 
-## v1.1.2
-* Fixed parameters parser to pass models and migrations path
+## v1.1.3
+* Fixed CLI parameters parser to pass models and migrations path

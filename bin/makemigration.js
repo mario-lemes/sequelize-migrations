@@ -12,9 +12,9 @@ let pathConfig = require('../lib/pathconfig');
 const { requireOrImport } = require('../lib/esm-utils');
 
 (async () => {
-  const program = new Command();
+  const options = new Command();
 
-  program
+  options
     .version(
       version,
       '-v, --vers',
@@ -39,7 +39,7 @@ const { requireOrImport } = require('../lib/esm-utils');
     .option('--migrations-path <value>', 'The path to the migrations folder')
     .option('--models-path <value>', 'The path to the models folder');
 
-  program.parse(process.argv);
+  options.parse(process.argv);
 
   // Windows support
   if (!process.env.PWD) {
@@ -47,12 +47,12 @@ const { requireOrImport } = require('../lib/esm-utils');
   }
 
   // Check dependencies
-  if (program.require) {
-    const [module, ...argvs] = program.require;
+  if (options.require) {
+    const [module, ...argvs] = options.require;
     await requireOrImport(module, argvs);
   }
 
-  const { migrationsDir, modelsDir } = pathConfig(program);
+  const { migrationsDir, modelsDir } = pathConfig(options);
 
   if (!fs.existsSync(modelsDir)) {
     console.log(
@@ -113,7 +113,7 @@ const { requireOrImport } = require('../lib/esm-utils');
     console.log('[Actions] ' + v);
   });
 
-  if (program.preview) {
+  if (options.preview) {
     console.log('Migration result:');
     console.log(
       beautify('[ \n' + migration.commandsUp.join(', \n') + ' \n];\n'),
@@ -140,15 +140,15 @@ const { requireOrImport } = require('../lib/esm-utils');
     currentState.revision,
     migration,
     migrationsDir,
-    program.name ? program.name : 'noname',
-    program.comment ? program.comment : '',
+    options.name ? options.name : 'noname',
+    options.comment ? options.comment : '',
   );
 
   console.log(
     `New migration to revision ${currentState.revision} has been saved to file '${info.filename}'`,
   );
 
-  if (program.execute) {
+  if (options.execute) {
     migrate.executeMigration(
       sequelize.getQueryInterface(),
       info.filename,

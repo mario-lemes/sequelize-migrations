@@ -146,7 +146,7 @@ const { requireOrImport } = require('../lib/esm-utils');
     currentState.revision,
     migration,
     migrationsDir,
-    options.name ? options.name : 'noname',
+    options.migrationName ? options.migrationName : 'noname',
     options.comment ? options.comment : '',
   );
 
